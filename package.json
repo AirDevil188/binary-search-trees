@@ -1,0 +1,12 @@
+{
+  "name": "binary-search-trees",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Binary Search Trees for the \"The Odin Project\"",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
