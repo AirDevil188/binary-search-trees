@@ -1,3 +1,26 @@
 import Tree from "./modules/tree.js";
-const tree = new Tree();
-console.log(tree.buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]));
+const tree = new Tree([50]);
+const treeTwo = new Tree([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+// console.log(tree.root);
+// console.log(tree.prettyPrint(tree.root));
+// console.log(tree.prettyPrint(tree.root));
+console.log(tree.insert(30));
+console.log(tree.insert(20));
+console.log(tree.insert(40));
+console.log(tree.insert(32));
+console.log(tree.insert(34));
+console.log(tree.insert(36));
+// console.log(tree.insert(10));
+// console.log(tree.insert(12));
+// console.log(tree.insert(2));
+// console.log(tree.insert(7));
+// console.log(tree.insert(4));
+// console.log(tree.insert(5));
+// console.log(tree.insert(6));
+// console.log(tree.insert(7));
+// console.log(tree.insert(10));
+
+// console.log(tree.prettyPrint(tree.root));
+console.log(treeTwo.prettyPrint(tree.root));
+console.log(tree.root);
+// console.log(treeTwo.prettyPrint(treeTwo.root));
