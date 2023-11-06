@@ -39,27 +39,22 @@ export default class Tree {
   };
 
   insert(value) {
-    const newNode = new Node(value);
     let current = this.root;
-    if (this.root === null) {
-      this.root = newNode;
-      return this.root;
-    }
+    const newNode = new Node(value);
+    if (this.root === null) return new Node(value);
 
-    while (current) {
-      if (value < current.data) {
-        if (current.left === null) {
-          current.left = newNode;
-          return newNode;
-        }
+    while (current.data > value) {
+      if (current.left !== null) {
         current = current.left;
       } else {
-        if (current.right === null) {
-          current.right = newNode;
-          return newNode;
-        }
-        current = current.right;
+        current.left = newNode;
+        return newNode;
       }
+    }
+    while (current.data < value) {
+      if (current.right !== null) current = current.right;
+      current.right = newNode;
+      return newNode;
     }
   }
 }
