@@ -2,7 +2,7 @@ import Node from "./node.js";
 
 export default class Tree {
   constructor(array) {
-    this.root = this.buildTree(array);
+    this.root = this.buildTree([...new Set(array)].sort(this.sortArray));
   }
 
   sortArray(a, b) {
@@ -10,13 +10,11 @@ export default class Tree {
   }
 
   buildTree(array, start = 0, end = array.length - 1) {
-    let sortedArray = [...new Set(array)].sort(this.sortArray);
-
     if (start > end) return null;
     const mid = Math.floor((start + end) / 2);
-    const root = new Node(sortedArray[mid]);
-    root.left = this.buildTree(sortedArray, start, mid - 1);
-    root.right = this.buildTree(sortedArray, mid + 1, end);
+    const root = new Node(array[mid]);
+    root.left = this.buildTree(array, start, mid - 1);
+    root.right = this.buildTree(array, mid + 1, end);
 
     return root;
   }
