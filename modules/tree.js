@@ -37,22 +37,77 @@ export default class Tree {
   };
 
   insert(value) {
-    let current = this.root;
     const newNode = new Node(value);
-    if (this.root === null) return new Node(value);
+    let current = this.root;
+    if (this.root === null) {
+      this.root = newNode;
+      return this.root;
+    }
 
-    while (current.data > value) {
-      if (current.left !== null) {
+    while (current) {
+      if (value < current.data) {
+        if (current.left === null) {
+          current.left = newNode;
+          return newNode;
+        }
         current = current.left;
       } else {
-        current.left = newNode;
-        return newNode;
+        if (current.right === null) {
+          current.right = newNode;
+          return newNode;
+        }
+        current = current.right;
       }
     }
-    while (current.data < value) {
-      if (current.right !== null) current = current.right;
-      current.right = newNode;
-      return newNode;
+  }
+  // delete(value) {
+  //   let current = this.root;
+  //   if (this.root === null) return;
+  //   while (current) {
+  //     if (value < current.data) {
+  //       if (current.left.data === value) {
+  //         current.left = null;
+  //         return current;
+  //       } else if (current.data === value && current.left.data !== null) {
+  //         current.left = current;
+  //         current.left = null;
+  //       }
+  //       current = current.left;
+  //     } else {
+  //       if (current.right.data == value) {
+  //         current.right = null;
+  //         return current;
+  //       } else if (current.data === value && current.right.data !== null) {
+  //         current.right = current;
+  //         current.right = null;
+  //       }
+  //       current = current.right;
+  //     }
+  //   }
+  // }
+
+  delete(value) {
+    let current = this.root;
+    let temp;
+    if (this.root === null) return;
+    while (current) {
+      if (value < current.data) {
+        if (current.data === value && current.left.data !== null) {
+          temp = current.data;
+          current.data = current.left.data;
+          current.left.data = temp;
+          current.left = null;
+        }
+        current = current.left;
+      } else {
+        if (current.data === value && current.right !== null) {
+          temp = current.data;
+          current.data = current.right.data;
+          current.right.data = temp;
+          current.right = null;
+        }
+        current = current.right;
+      }
     }
   }
 }
