@@ -36,79 +36,35 @@ export default class Tree {
     }
   };
 
-  insert(value) {
-    const newNode = new Node(value);
-    let current = this.root;
-    if (this.root === null) {
+  insert(value, root = this.root) {
+    let newNode = new Node(value);
+    if (root === null) {
       this.root = newNode;
-      return this.root;
+      return root;
     }
-
-    while (current) {
-      if (value < current.data) {
-        if (current.left === null) {
-          current.left = newNode;
-          return newNode;
-        }
-        current = current.left;
-      } else {
-        if (current.right === null) {
-          current.right = newNode;
-          return newNode;
-        }
-        current = current.right;
-      }
+    if (value < root) {
+      if (root.left === null) root.left = newNode;
+      else this.insert(value, root.left);
+    } else {
+      if (root.right === null) root.right = newNode;
+      else this.insert(value, root.right);
     }
+    return;
   }
-  // delete(value) {
-  //   let current = this.root;
-  //   if (this.root === null) return;
-  //   while (current) {
-  //     if (value < current.data) {
-  //       if (current.left.data === value) {
-  //         current.left = null;
-  //         return current;
-  //       } else if (current.data === value && current.left.data !== null) {
-  //         current.left = current;
-  //         current.left = null;
-  //       }
-  //       current = current.left;
-  //     } else {
-  //       if (current.right.data == value) {
-  //         current.right = null;
-  //         return current;
-  //       } else if (current.data === value && current.right.data !== null) {
-  //         current.right = current;
-  //         current.right = null;
-  //       }
-  //       current = current.right;
-  //     }
-  //   }
-  // }
-
-  delete(value) {
-    let current = this.root;
-    let temp;
-    if (this.root === null) return;
-    while (current) {
-      if (value < current.data) {
-        if (current.data === value && current.left.data !== null) {
-          temp = current.data;
-          current.data = current.left.data;
-          current.left.data = temp;
-          current.left = null;
-        }
-        current = current.left;
-      } else {
-        if (current.data === value && current.right !== null) {
-          temp = current.data;
-          current.data = current.right.data;
-          current.right.data = temp;
-          current.right = null;
-        }
-        current = current.right;
-      }
+  delete(value, root = this.root, prev) {
+    if (root === null) return;
+    if (value < root.data) {
+      if (root.data === value && root.right === null && root.left === null) {
+        if (prev.left !== null && prev.left.data === value) prev.left = null;
+        else prev.right = null;
+      } else this.delete(value, root.left, root);
+    } else {
+      if (root.data === value && root.right === null && root.left === null) {
+        if (prev.right !== null && prev.right.data === value) prev.right = null;
+        else prev.left = null;
+      } else this.delete(value, root.right, root);
     }
+    return;
   }
 }
 
