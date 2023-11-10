@@ -49,19 +49,58 @@ export default class Tree {
       if (root.right === null) root.right = newNode;
       else this.insert(value, root.right);
     }
-    return;
+    return null;
   }
-  delete(value, root = this.root, prev) {
+
+  delete(value, root = this.root, prev = null) {
+    // check if bst is empty if it is return
     if (root === null) return;
+    // if there is only one value (root) assign it  tu null
+    if (root.left === null && root.right === null && prev === null)
+      return (root.data = null);
     if (value < root.data) {
+      // delete leaf nodes
       if (root.data === value && root.right === null && root.left === null) {
         if (prev.left !== null && prev.left.data === value) prev.left = null;
         else prev.right = null;
+
+        // delete nodes with one child
+      } else if (
+        root.data === value &&
+        root.left !== null &&
+        root.right === null
+      ) {
+        root.data = root.left.data;
+        root.left = null;
+      } else if (
+        root.data === value &&
+        root.right !== null &&
+        root.left === null
+      ) {
+        root.data = root.right.data;
+        root.right = null;
       } else this.delete(value, root.left, root);
     } else {
+      // delete leaf nodes
       if (root.data === value && root.right === null && root.left === null) {
         if (prev.right !== null && prev.right.data === value) prev.right = null;
         else prev.left = null;
+
+        // delete nodes with one child
+      } else if (
+        root.data === value &&
+        root.right !== null &&
+        root.left === null
+      ) {
+        root.data = root.right.data;
+        root.right = null;
+      } else if (
+        root.data === value &&
+        root.left !== null &&
+        root.right === null
+      ) {
+        root.data = root.left.data;
+        root.left = null;
       } else this.delete(value, root.right, root);
     }
     return;
