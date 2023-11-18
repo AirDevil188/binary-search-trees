@@ -174,8 +174,10 @@ export default class Tree {
         if (root.data === value) return root;
         else return this.find(value, root.left);
       // traverse right
-    } else if (root.data === value) return root;
-    else return this.find(value, root.right);
+    } else {
+      if (root.data === value) return root;
+      return this.find(value, root.right);
+    }
   }
 }
 
