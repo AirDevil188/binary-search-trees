@@ -164,6 +164,19 @@ export default class Tree {
     }
     return root;
   }
+
+  find(value, root = this.root) {
+    // check if the tree has a root node
+    if (!root) return;
+    // traverse left
+    if (value < root.data) {
+      if (root.left)
+        if (root.data === value) return root;
+        else return this.find(value, root.left);
+      // traverse right
+    } else if (root.data === value) return root;
+    else return this.find(value, root.right);
+  }
 }
 
 // Algorithm for creating balanced Binary Search Tree
@@ -179,3 +192,13 @@ export default class Tree {
 /// <root> <left> <right> Pre Order
 // <left> <root> <right> In Order
 // <left> <right> <root> Post Order
+
+// Find method
+
+// If our tree doesn't have an root node we return
+
+// If it has:
+// We traverse the tree, if the value < root.data we traverse left.
+// Else, if the value > root.data we traverse right.
+// If we find the NODE that matches our value argument we return that node.
+// If not, we return nothing.
