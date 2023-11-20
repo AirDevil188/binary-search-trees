@@ -179,6 +179,33 @@ export default class Tree {
       return this.find(value, root.right);
     }
   }
+
+  levelOrder(callback, array = [], queue = [], root = this.root) {
+    let temp = null;
+    let nodeDataArray = [];
+    if (!root) return;
+    if (array.length === 0) {
+      queue.push(root);
+      temp = queue.shift();
+      nodeDataArray.push(temp.data);
+      array.push(temp);
+    }
+    if (root.left) queue.push(root.left);
+
+    if (root.right) queue.push(root.right);
+
+    while (queue.length) {
+      temp = queue.shift();
+      array.push(temp);
+      nodeDataArray.push(temp.data);
+      if (temp) {
+        if (temp.left) queue.push(temp.left);
+        if (temp.right) queue.push(temp.right);
+      }
+    }
+    if (!callback) return nodeDataArray;
+    else return array;
+  }
 }
 
 // Algorithm for creating balanced Binary Search Tree
@@ -204,3 +231,18 @@ export default class Tree {
 // Else, if the value > root.data we traverse right.
 // If we find the NODE that matches our value argument we return that node.
 // If not, we return nothing.
+
+// lever order
+// const array1 = [1, 2, 3];
+
+//const firstElement = array1.shift();
+
+//console.log(array1);
+// Expected output: Array [2, 3]
+
+//console.log(firstElement);
+// Expected output: 1
+
+// qArray.push(root)
+// array = qArray.shift();
+// console.log(array) - 8
