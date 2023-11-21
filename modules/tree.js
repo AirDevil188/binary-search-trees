@@ -206,43 +206,20 @@ export default class Tree {
     if (!callback) return nodeDataArray;
     else return array;
   }
+  preOrder(callback = null, array = [], root = this.root) {
+    if (!root) return;
+    if (callback) array.push(root);
+    else array.push(root.data);
+
+    if (root.left) {
+      this.preOrder(callback, array, root.left);
+    }
+    if (root.right) {
+      this.preOrder(callback, array, root.right);
+    }
+    return array;
+  }
 }
-
-// Algorithm for creating balanced Binary Search Tree
-
-// 1. Initialize start = 0, end = array.length - 1,
-// 2. Initialize mid = (start + end) / 2
-// 3. Create a new node, with mid as root (let's call it A)
-// - Then use recursion for the following steps:
-
-// Calculate mid of the left subarray and make it root of the left subtree of A
-// Calculate mid of the right subarray and make it root of the right subtree of B
-
 /// <root> <left> <right> Pre Order
 // <left> <root> <right> In Order
 // <left> <right> <root> Post Order
-
-// Find method
-
-// If our tree doesn't have an root node we return
-
-// If it has:
-// We traverse the tree, if the value < root.data we traverse left.
-// Else, if the value > root.data we traverse right.
-// If we find the NODE that matches our value argument we return that node.
-// If not, we return nothing.
-
-// lever order
-// const array1 = [1, 2, 3];
-
-//const firstElement = array1.shift();
-
-//console.log(array1);
-// Expected output: Array [2, 3]
-
-//console.log(firstElement);
-// Expected output: 1
-
-// qArray.push(root)
-// array = qArray.shift();
-// console.log(array) - 8
