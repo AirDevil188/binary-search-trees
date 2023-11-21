@@ -223,14 +223,23 @@ export default class Tree {
 
   inOrder(callback = null, array = [], root = this.root) {
     if (!root) return;
-    if (root.left) {
-      if (root.left) this.inOrder(callback, array, root.left);
-    }
+
+    if (root.left) this.inOrder(callback, array, root.left);
+
     if (callback) array.push(root);
     else array.push(root.data);
-    if (root.right) {
-      if (root.right) this.inOrder(callback, array, root.right);
-    }
+
+    if (root.right) this.inOrder(callback, array, root.right);
+
+    return array;
+  }
+
+  postOrder(callback = null, array = [], root = this.root) {
+    if (!root) return;
+    if (root.left) this.postOrder(callback, array, root.left);
+    if (root.right) this.postOrder(callback, array, root.right);
+    if (callback) array.push(root);
+    else array.push(root.data);
     return array;
   }
 }
