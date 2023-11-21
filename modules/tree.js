@@ -206,6 +206,7 @@ export default class Tree {
     if (!callback) return nodeDataArray;
     else return array;
   }
+
   preOrder(callback = null, array = [], root = this.root) {
     if (!root) return;
     if (callback) array.push(root);
@@ -216,6 +217,19 @@ export default class Tree {
     }
     if (root.right) {
       this.preOrder(callback, array, root.right);
+    }
+    return array;
+  }
+
+  inOrder(callback = null, array = [], root = this.root) {
+    if (!root) return;
+    if (root.left) {
+      if (root.left) this.inOrder(callback, array, root.left);
+    }
+    if (callback) array.push(root);
+    else array.push(root.data);
+    if (root.right) {
+      if (root.right) this.inOrder(callback, array, root.right);
     }
     return array;
   }
