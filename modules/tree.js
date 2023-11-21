@@ -182,13 +182,12 @@ export default class Tree {
 
   levelOrder(callback, array = [], queue = [], root = this.root) {
     let temp = null;
-    let nodeDataArray = [];
     if (!root) return;
     if (array.length === 0) {
       queue.push(root);
       temp = queue.shift();
-      nodeDataArray.push(temp.data);
-      array.push(temp);
+      if (callback) array.push(temp);
+      else array.push(temp.data);
     }
     if (root.left) queue.push(root.left);
 
@@ -196,15 +195,14 @@ export default class Tree {
 
     while (queue.length) {
       temp = queue.shift();
-      array.push(temp);
-      nodeDataArray.push(temp.data);
+      if (callback) array.push(temp);
+      else array.push(temp.data);
       if (temp) {
         if (temp.left) queue.push(temp.left);
         if (temp.right) queue.push(temp.right);
       }
     }
-    if (!callback) return nodeDataArray;
-    else return array;
+    return "Levelorder: " + array;
   }
 
   preOrder(callback = null, array = [], root = this.root) {
@@ -218,7 +216,7 @@ export default class Tree {
     if (root.right) {
       this.preOrder(callback, array, root.right);
     }
-    return array;
+    return "Postorder: " + array;
   }
 
   inOrder(callback = null, array = [], root = this.root) {
@@ -231,7 +229,7 @@ export default class Tree {
 
     if (root.right) this.inOrder(callback, array, root.right);
 
-    return array;
+    return "Inorder: " + array;
   }
 
   postOrder(callback = null, array = [], root = this.root) {
@@ -240,7 +238,7 @@ export default class Tree {
     if (root.right) this.postOrder(callback, array, root.right);
     if (callback) array.push(root);
     else array.push(root.data);
-    return array;
+    return "Postorder: " + array;
   }
 }
 /// <root> <left> <right> Pre Order
