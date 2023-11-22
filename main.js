@@ -1,10 +1,12 @@
 import Tree from "./modules/tree.js";
 const tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
-// tree.levelOrder();
 console.log(tree.levelOrder());
 console.log(tree.preOrder());
 console.log(tree.inOrder());
 console.log(tree.postOrder());
+console.log(tree.depth(3));
+console.log(tree.depth(1));
+console.log(tree.depth(8));
 // tree.delete(6345);
 // tree.delete(23);
 // tree.delete(7);

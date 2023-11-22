@@ -176,7 +176,7 @@ export default class Tree {
       // traverse right
     } else {
       if (root.data === value) return root;
-      return this.find(value, root.right);
+      else return this.find(value, root.right);
     }
   }
 
@@ -240,7 +240,18 @@ export default class Tree {
     else array.push(root.data);
     return "Postorder: " + array;
   }
+
+  depth(value, root = this.root, depth = 0) {
+    if (!root) return;
+    if (root.data !== value) {
+      if (value < root.data) return this.depth(value, root.left, depth + 1);
+      else return this.depth(value, root.right, depth + 1);
+    } else {
+      return depth;
+    }
+  }
 }
 /// <root> <left> <right> Pre Order
 // <left> <root> <right> In Order
 // <left> <right> <root> Post Order
+// depth 1/ 2/ 3
