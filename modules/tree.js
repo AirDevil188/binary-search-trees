@@ -250,6 +250,18 @@ export default class Tree {
       return depth;
     }
   }
+
+  height(node = this.root) {
+    if (!node) return 0;
+    else {
+      let height = 1;
+      const leftHeight = this.height(node.left);
+      const rightHeight = this.height(node.right);
+
+      height += Math.max(leftHeight, rightHeight);
+      return height;
+    }
+  }
 }
 /// <root> <left> <right> Pre Order
 // <left> <root> <right> In Order
