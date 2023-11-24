@@ -4,21 +4,6 @@ console.log(tree.levelOrder());
 console.log(tree.preOrder());
 console.log(tree.inOrder());
 console.log(tree.postOrder());
-// console.log(tree.height(4));
-console.log(tree.height(tree.root));
-// tree.delete(6345);
-// tree.delete(23);
-// tree.delete(7);
-// tree.delete(3);
-// tree.delete(67);
-// tree.delete(8);
-// tree.delete(1);
-// tree.delete(9);
-// tree.delete(324);
-// tree.delete(4);
-// tree.delete(5);
-// tree.insert(10);
-// tree.delete(10);
 
 console.log(tree.prettyPrint(tree.root));
 
