@@ -82,8 +82,6 @@ export default class Tree {
     // delete nodes with 1 child
 
     if (root.right && !root.left && root.data === value) {
-      // if it only has 1 right child
-
       if (!root.right.right) {
         root.data = root.right.data;
         if (!root.right.left) {
@@ -93,7 +91,6 @@ export default class Tree {
         }
       } else if (!parent.right && !parent.left) {
         parent.right = root.right;
-        // if it has parent on the right
       } else if (parent.right) {
         if (parent.left) {
           parent.right = root.right;
@@ -103,7 +100,6 @@ export default class Tree {
       }
     } else if (root.left && !root.right && !root.left.left && root.data === value) {
       if (root.left && !root.right && root.data === value) {
-        // if it only has 1 left child
         if (!root.left.left) {
           if (!root.left.right && !root.right) {
             root.data = root.left.data;
@@ -115,16 +111,13 @@ export default class Tree {
             root.data = root.left.data;
             parent.left = root.left;
           }
-          // if it has 1 left child with grandchildren
         } else if (!parent.left && !parent.right) {
           parent.left = root.left;
-          // if it has parent on the left
         } else if (parent.left) {
           parent.right = root.left;
         }
       }
-    } // delete nodes with two children
-    else if (root.data === value && root.right && root.left) {
+    } else if (root.data === value && root.right && root.left) {
       if (temp.right.right) temp = temp.right;
       else {
         temp = root;
@@ -166,14 +159,11 @@ export default class Tree {
   }
 
   find(value, root = this.root) {
-    // check if the tree has a root node
     if (!root) return;
-    // traverse left
     if (value < root.data) {
       if (root.left)
         if (root.data === value) return root;
         else return this.find(value, root.left);
-      // traverse right
     } else {
       if (root.data === value) return root;
       else return this.find(value, root.right);
