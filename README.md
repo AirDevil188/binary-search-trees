@@ -15,8 +15,8 @@ Binary Search Trees for the "The Odin Project"
 - `postOrder(callback)` traverses the Binary Search Tree with Post Order, callback is optional if we pass callback to our method, our method will return NODES as objects. If no callback is being provided we are going to get only the values of our nodes from our method.
 - `depth(value)` returns the depth of the NODE based on value that we pass as an argument to our method.
 - `height(root)` returns the height of the Binary Search Tree
-- `isBalanced()` returns true if the Binary Search Tree is balanced, else, it returns false
-- `rebalance(callback)` Rebalances the Binary Search Tree
+- `isBalanced(root)` returns true if the Binary Search Tree is balanced, else, it returns false
+- `rebalance()` Rebalances the Binary Search Tree
 
 We also, have simple driver script for our BST that ties everything together:
 
