@@ -251,12 +251,12 @@ export default class Tree {
     }
   }
 
-  height(node = this.root) {
-    if (!node) return -1;
+  height(root = this.root) {
+    if (!root) return -1;
     else {
       let height = 1;
-      const leftHeight = this.height(node.left);
-      const rightHeight = this.height(node.right);
+      const leftHeight = this.height(root.left);
+      const rightHeight = this.height(root.right);
 
       height += Math.max(leftHeight, rightHeight);
       return height;
@@ -281,7 +281,3 @@ export default class Tree {
     return this.root;
   }
 }
-/// <root> <left> <right> Pre Order
-// <left> <root> <right> In Order
-// <left> <right> <root> Post Order
-// depth 1/ 2/ 3
