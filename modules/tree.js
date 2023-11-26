@@ -19,7 +19,7 @@ export default class Tree {
     return root;
   }
 
-  prettyPrint = (node, prefix = "", isLeft = true) => {
+  prettyPrint(node, prefix = "", isLeft = true) {
     if (node === null) {
       return;
     }
@@ -30,7 +30,7 @@ export default class Tree {
     if (node.left !== null) {
       this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
     }
-  };
+  }
 
   insert(value, root = this.root) {
     let newNode = new Node(value);
